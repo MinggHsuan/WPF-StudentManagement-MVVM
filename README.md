@@ -6,6 +6,8 @@
 ## 畫面(Before)
 <img width="600"  alt="image" src="https://github.com/user-attachments/assets/4ae75bf6-3cd4-47c2-91bf-c111f55308bc" />
 
-## 科技風畫面(After)
+## 科技風格畫面(After)
 <img width="600" alt="image" src="https://github.com/user-attachments/assets/4d3ed66f-da20-4188-b3e9-26454108ae30" />
 
+## 日式風格畫面(After)
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/714b3f5b-f02a-415c-bcc9-2fb378412d4b" />
