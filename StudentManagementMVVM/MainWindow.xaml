@@ -6,411 +6,431 @@
         xmlns:local="clr-namespace:StudentManagementMVVM"
         mc:Ignorable="d"
         Title="學生管理系統"
-        Height="600" Width="1000"
-        Background="#0D1117"
-        FontFamily="Microsoft JhengHei UI">
+        Height="600"
+        Width="1000"
+        Background="#F3EFE7">
+
 
     <Window.Resources>
+
+
         <local:VisibleConverter x:Key="converter"/>
 
-        <!-- 色彩定義 -->
-        <SolidColorBrush x:Key="BgPrimary"     Color="#0D1117"/>
-        <SolidColorBrush x:Key="BgSurface"     Color="#161B22"/>
-        <SolidColorBrush x:Key="BgCard"        Color="#1C2333"/>
-        <SolidColorBrush x:Key="AccentBlue"    Color="#58A6FF"/>
-        <SolidColorBrush x:Key="AccentCyan"    Color="#39D353"/>
-        <SolidColorBrush x:Key="BorderColor"   Color="#30363D"/>
-        <SolidColorBrush x:Key="TextPrimary"   Color="#E6EDF3"/>
-        <SolidColorBrush x:Key="TextMuted"     Color="#7D8590"/>
-        <SolidColorBrush x:Key="DangerColor"   Color="#F85149"/>
-        <SolidColorBrush x:Key="DangerHover"   Color="#DA3633"/>
 
-        <!-- Label 樣式 -->
-        <Style x:Key="FieldLabel" TargetType="Label">
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="{StaticResource TextMuted}"/>
-            <Setter Property="Padding" Value="0,0,0,4"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
+        <!-- 日式柔和陰影 -->
+        <DropShadowEffect x:Key="Shadow"
+                          BlurRadius="12"
+                          ShadowDepth="3"
+                          Opacity="0.18"/>
 
-        <!-- 輸入框樣式 -->
-        <Style x:Key="InputBox" TargetType="TextBox">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="#E6EDF3"/>
-            <Setter Property="Background" Value="{StaticResource BorderColor}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="2"/>
-            <Setter Property="Height" Value="40"/>
+
+
+        <!-- Label -->
+
+        <Style TargetType="Label">
+
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="#3C3836"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="CaretBrush" Value="{StaticResource AccentBlue}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Border x:Name="border"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="6">
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          Margin="{TemplateBinding Padding}"
-                                          VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#E6EDF3"/>
-                            </Trigger>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#E6EDF3"/>
-                                <Setter TargetName="border" Property="Background" Value="{StaticResource BorderColor}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+
         </Style>
 
-        <!-- 主送出按鈕 -->
-        <Style x:Key="PrimaryButton" TargetType="Button">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="#0D1117"/>
-            <Setter Property="Background" Value="{StaticResource AccentBlue}"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="20,0"/>
+
+
+        <!-- TextBox -->
+
+        <Style TargetType="TextBox">
+
+
+            <Setter Property="Width" Value="130"/>
+
             <Setter Property="Height" Value="38"/>
-            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="FontSize" Value="15"/>
+
+            <Setter Property="Padding" Value="10"/>
+
+            <Setter Property="Margin" Value="5"/>
+
+
+            <Setter Property="Background"
+                    Value="#FFFDF8"/>
+
+
+            <Setter Property="BorderBrush"
+                    Value="#CFC5B5"/>
+
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+
+        </Style>
+
+
+
+
+        <!-- Button -->
+
+        <Style TargetType="Button">
+
+
+            <Setter Property="Width" Value="100"/>
+
+            <Setter Property="Height" Value="38"/>
+
+            <Setter Property="Margin" Value="8"/>
+
+
+            <Setter Property="Background"
+                    Value="#78866B"/>
+
+
+            <Setter Property="Foreground"
+                    Value="White"/>
+
+
+            <Setter Property="FontSize"
+                    Value="15"/>
+
+
+
             <Setter Property="Template">
+
+
                 <Setter.Value>
+
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border"
-                                Background="{TemplateBinding Background}"
-                                CornerRadius="6"
-                                Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
+
+
+                        <Border
+
+                            Background="{TemplateBinding Background}"
+
+                            CornerRadius="6">
+
+
+                            <ContentPresenter
+
+                                HorizontalAlignment="Center"
+
+                                VerticalAlignment="Center"/>
+
+
                         </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#79B8FF"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#388BFD"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
+
+
                     </ControlTemplate>
+
+
                 </Setter.Value>
+
+
             </Setter>
+
+
+
+
+            <Style.Triggers>
+
+
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+
+
+                    <Setter Property="Background"
+                            Value="#647052"/>
+
+
+                </Trigger>
+
+
+
+                <Trigger Property="IsPressed"
+                         Value="True">
+
+
+                    <Setter Property="Opacity"
+                            Value="0.6"/>
+
+
+                </Trigger>
+
+
+
+            </Style.Triggers>
+
+
         </Style>
 
-        <!-- 刪除按鈕 -->
-        <Style x:Key="DangerButton" TargetType="Button">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Foreground" Value="{StaticResource DangerColor}"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="{StaticResource DangerColor}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Width" Value="62"/>
-            <Setter Property="Height" Value="28"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="5">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#2D1B1B"/>
-                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource DangerHover}"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#3D2020"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+
+
+
+
+
+        <!-- 清單 Label -->
+
+        <Style x:Key="ItemLabelStyle"
+               TargetType="Label">
+
+
+            <Setter Property="Width"
+                    Value="100"/>
+
+
+            <Setter Property="Margin"
+                    Value="10"/>
+
+
+            <Setter Property="Visibility"
+                    Value="{Binding IsClick,
+                    Converter={StaticResource converter},
+                    ConverterParameter=Forward}"/>
+
+
         </Style>
 
-        <!-- 編輯按鈕 -->
-        <Style x:Key="EditButton" TargetType="Button">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Foreground" Value="{StaticResource AccentBlue}"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="{StaticResource AccentBlue}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Width" Value="62"/>
-            <Setter Property="Height" Value="28"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="5">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#1A2A3A"/>
-                                <Setter TargetName="border" Property="BorderBrush" Value="#79B8FF"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#1F3050"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+
+
+
+
+        <Style x:Key="ItemTextBoxStyle"
+               TargetType="TextBox">
+
+
+            <Setter Property="Width"
+                    Value="100"/>
+
+
+            <Setter Property="Visibility"
+                    Value="{Binding IsClick,
+                    Converter={StaticResource converter},
+                    ConverterParameter=Reverse}"/>
+
+
         </Style>
 
-        <!-- 列表項 Label（可見時） -->
-        <Style x:Key="ItemLabelStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Visibility" Value="{Binding IsClick, Converter={StaticResource converter}, ConverterParameter=Forward}"/>
-        </Style>
-
-        <!-- 列表項 TextBox（編輯時） -->
-        <Style x:Key="ItemTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource InputBox}">
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Visibility" Value="{Binding IsClick, Converter={StaticResource converter}, ConverterParameter=Reverse}"/>
-        </Style>
-
-        <!-- 列表項 Class Label（有自己的 Visibility，不走 Style） -->
-        <Style x:Key="ClassLabelStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="#E6EDF3"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Width" Value="90"/>
-        </Style>
-
-        <!-- 列表項 Class TextBox（有自己的 Visibility） -->
-        <Style x:Key="ClassTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource InputBox}">
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Width" Value="90"/>
-        </Style>
 
     </Window.Resources>
 
-    <!-- 最外層捲動容器 -->
-    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  Background="{StaticResource BgPrimary}">
 
-        <StackPanel Margin="24,20,24,32">
 
-            <!-- ── 標題列 ── -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                <Rectangle Width="4" Height="24" Fill="{StaticResource AccentBlue}"
-                           RadiusX="2" RadiusY="2" VerticalAlignment="Center"/>
-                <TextBlock Text="學生管理系統"
-                           FontSize="20" FontWeight="Bold"
-                           Foreground="{StaticResource TextPrimary}"
-                           Margin="12,0,0,0" VerticalAlignment="Center"/>
-                <TextBlock Text="Student Management"
-                           FontSize="13"
-                           Foreground="{StaticResource TextMuted}"
-                           Margin="12,0,0,0" VerticalAlignment="Center"/>
+
+    <Grid Margin="35">
+
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+
+
+
+
+
+
+        <!-- 新增學生 -->
+
+        <Border
+
+            Background="#FFFDF8"
+
+            Padding="25"
+
+            CornerRadius="12"
+
+            Effect="{StaticResource Shadow}">
+
+
+            <StackPanel>
+
+
+
+                <TextBlock
+
+                    Text="學生管理系統"
+
+                    FontSize="26"
+
+                    FontWeight="SemiBold"
+
+                    Foreground="#4A4036"
+
+                    Margin="0 0 0 20"/>
+
+
+
+
+
+                <StackPanel Orientation="Horizontal">
+
+
+                    <Label Content="班級"/>
+
+                    <TextBox Text="{Binding InputClass}"/>
+
+
+
+                    <Label Content="座號"/>
+
+                    <TextBox Text="{Binding InputNumber}"/>
+
+
+
+                    <Label Content="姓名"/>
+
+                    <TextBox Text="{Binding InputName}"/>
+
+
+
+                    <Label Content="成績"/>
+
+                    <TextBox Text="{Binding InputScore}"/>
+
+
+
+                    <Button Content="新增"
+                            Command="{Binding Button_Click}"/>
+
+
+
+                </StackPanel>
+
+
+
             </StackPanel>
 
-            <!-- ── 輸入區塊 ── -->
-            <Border Background="{StaticResource BgSurface}"
-                    BorderBrush="{StaticResource BorderColor}"
-                    BorderThickness="1"
-                    CornerRadius="10"
-                    Padding="20,16">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="16"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="16"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="140"/>
-                        <ColumnDefinition Width="16"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="110"/>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="100"/>
-                    </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Content="班級" Style="{StaticResource FieldLabel}"/>
-                    <TextBox Grid.Column="1" Text="{Binding InputClass}"
-                             Style="{StaticResource InputBox}"/>
+        </Border>
 
-                    <Label Grid.Column="3" Content="座號" Style="{StaticResource FieldLabel}"/>
-                    <TextBox Grid.Column="4" Text="{Binding InputNumber}"
-                             Style="{StaticResource InputBox}"/>
 
-                    <Label Grid.Column="6" Content="學生姓名" Style="{StaticResource FieldLabel}"/>
-                    <TextBox Grid.Column="7" Text="{Binding InputName}"
-                             Style="{StaticResource InputBox}"/>
 
-                    <Label Grid.Column="9" Content="成績" Style="{StaticResource FieldLabel}"/>
-                    <TextBox Grid.Column="10" Text="{Binding InputScore}"
-                             Style="{StaticResource InputBox}"/>
 
-                    <Button Grid.Column="12"
-                            Content="＋ 新增"
-                            Style="{StaticResource PrimaryButton}"
-                            Command="{Binding Button_Click}"/>
-                </Grid>
-            </Border>
 
-            <!-- ── 列表標頭 ── -->
-            <Border Margin="0,20,0,0"
-                    Background="{StaticResource BgCard}"
-                    BorderBrush="{StaticResource BorderColor}"
-                    BorderThickness="1,1,1,0"
-                    CornerRadius="8,8,0,0"
-                    Padding="16,10">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="90"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="140"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="班級"
-                               FontSize="12" FontWeight="SemiBold"
-                               Foreground="{StaticResource TextMuted}"
-                               VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Text="座號"
-                               FontSize="12" FontWeight="SemiBold"
-                               Foreground="{StaticResource TextMuted}"
-                               VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="2" Text="姓名"
-                               FontSize="12" FontWeight="SemiBold"
-                               Foreground="{StaticResource TextMuted}"
-                               VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="3" Text="成績"
-                               FontSize="12" FontWeight="SemiBold"
-                               Foreground="{StaticResource TextMuted}"
-                               VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="4" Text="操作"
-                               FontSize="12" FontWeight="SemiBold"
-                               Foreground="{StaticResource TextMuted}"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"/>
-                </Grid>
-            </Border>
 
-            <!-- ── 資料列表 ── -->
-            <Border BorderBrush="{StaticResource BorderColor}"
-                    BorderThickness="1,0,1,1"
-                    CornerRadius="0,0,8,8"
-                    ClipToBounds="True">
-                <ItemsControl ItemsSource="{Binding StudentList}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border x:Name="rowBorder"
-                                    Background="{StaticResource BgSurface}"
-                                    BorderBrush="{StaticResource BorderColor}"
-                                    BorderThickness="0,0,0,1"
-                                    Padding="16,10">
-                                <Border.Style>
-                                    <Style TargetType="Border">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#1C2333"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
 
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="90"/>
-                                        <ColumnDefinition Width="100"/>
-                                        <ColumnDefinition Width="140"/>
-                                        <ColumnDefinition Width="100"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
 
-                                    <!-- 班級 -->
-                                    <Label Grid.Column="0"
-                                           Content="{Binding Class}"
-                                           Style="{StaticResource ClassLabelStyle}"
-                                           Visibility="{Binding IsClick, Converter={StaticResource converter}, ConverterParameter=Forward}"/>
-                                    <TextBox Grid.Column="0"
-                                             Text="{Binding Class}"
-                                             Style="{StaticResource ClassTextBoxStyle}"
-                                             Visibility="{Binding IsClick, Converter={StaticResource converter}, ConverterParameter=Reverse}"/>
+        <ScrollViewer Grid.Row="1"
+                      Margin="0 25 0 0">
 
-                                    <!-- 座號 -->
-                                    <Label Grid.Column="1"
-                                           Content="{Binding Number}"
-                                           Style="{StaticResource ItemLabelStyle}"/>
-                                    <TextBox Grid.Column="1"
-                                             Text="{Binding Number}"
-                                             Style="{StaticResource ItemTextBoxStyle}"
-                                             Width="80" HorizontalAlignment="Left"/>
 
-                                    <!-- 姓名 -->
-                                    <Label Grid.Column="2"
-                                           Content="{Binding Name}"
-                                           Style="{StaticResource ItemLabelStyle}"/>
-                                    <TextBox Grid.Column="2"
-                                             Text="{Binding Name}"
-                                             Style="{StaticResource ItemTextBoxStyle}"
-                                             Width="120" HorizontalAlignment="Left"/>
+            <ItemsControl ItemsSource="{Binding StudentList}">
 
-                                    <!-- 成績 -->
-                                    <Label Grid.Column="3"
-                                           Content="{Binding Score}"
-                                           Style="{StaticResource ItemLabelStyle}"/>
-                                    <TextBox Grid.Column="3"
-                                             Text="{Binding Score}"
-                                             Style="{StaticResource ItemTextBoxStyle}"
-                                             Width="80" HorizontalAlignment="Left"/>
 
-                                    <!-- 操作按鈕 -->
-                                    <StackPanel Grid.Column="4"
-                                                Orientation="Horizontal"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Center"
-                                                >
-                                        <Button Content="刪除"
-                                                Style="{StaticResource DangerButton}"
-                                                Command="{Binding DataContext.RemoveData, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                                CommandParameter="{Binding}"/>
-                                        <Button Content="{Binding EditContent}"
-                                                Style="{StaticResource EditButton}"
-                                                Command="{Binding DataContext.EditData, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                                CommandParameter="{Binding}"/>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </Border>
 
-            <!-- ── 底部說明 ── -->
-            <TextBlock Text="點擊「編輯」可直接修改欄位，完成後再次點擊儲存。"
-                       FontSize="12"
-                       Foreground="{StaticResource TextMuted}"
-                       Margin="4,12,0,0"/>
+                <ItemsControl.ItemTemplate>
 
-        </StackPanel>
-    </ScrollViewer>
+
+
+                    <DataTemplate>
+
+
+                        <Border
+
+                            Background="#FFFDF8"
+
+                            Margin="0 6"
+
+                            Padding="12"
+
+                            CornerRadius="10"
+
+                            Effect="{StaticResource Shadow}">
+
+
+
+                            <StackPanel Orientation="Horizontal">
+
+
+                                <Label Content="{Binding Class}"
+                                       Style="{StaticResource ItemLabelStyle}"/>
+
+
+                                <TextBox Text="{Binding Class}"
+                                         Style="{StaticResource ItemTextBoxStyle}"/>
+
+
+
+                                <Label Content="{Binding Number}"
+                                       Style="{StaticResource ItemLabelStyle}"/>
+
+
+
+                                <TextBox Text="{Binding Number}"
+                                         Style="{StaticResource ItemTextBoxStyle}"/>
+
+
+
+
+                                <Label Content="{Binding Name}"
+                                       Style="{StaticResource ItemLabelStyle}"/>
+
+
+                                <TextBox Text="{Binding Name}"
+                                         Style="{StaticResource ItemTextBoxStyle}"/>
+
+
+
+
+                                <Label Content="{Binding Score}"
+                                       Style="{StaticResource ItemLabelStyle}"/>
+
+
+                                <TextBox Text="{Binding Score}"
+                                         Style="{StaticResource ItemTextBoxStyle}"/>
+
+
+
+
+                                <Button Content="刪除"
+
+                                Background="#B56B6B"
+
+                                Command="{Binding DataContext.RemoveData,
+                                RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+
+                                CommandParameter="{Binding}"/>
+
+
+
+
+
+                                <Button Content="{Binding EditContent}"
+
+                                Command="{Binding DataContext.EditData,
+                                RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+
+                                CommandParameter="{Binding}"/>
+
+
+
+                            </StackPanel>
+
+
+
+                        </Border>
+
+
+
+                    </DataTemplate>
+
+
+
+                </ItemsControl.ItemTemplate>
+
+
+            </ItemsControl>
+
+
+
+        </ScrollViewer>
+
+
+
+    </Grid>
+
+
 </Window>
