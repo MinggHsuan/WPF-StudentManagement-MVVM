@@ -1,6 +1,11 @@
-## 畫面(Before)
-![原風格畫面](https://github.com/MinggHsuan/StudentManagementMVVM/blob/master/StudentManagementMVVM/images/%E5%8E%9F%E9%A2%A8%E6%A0%BC.jpg ) 
+# Student Management System
+- 這是一個使用C# MVVM+MVP架構開發的學生管理系統，小型的WPF專案。
+- 想要做到主要功能運作良好及邏輯與介面分離，但畫面陽春的情況下，刪除整個Xaml檔，由AI重新生成一個任何風格的介面Xaml檔，能夠直接套用且功能都正常使用。
 
-## 2.科技風畫面(After)
-![科技風畫面](https://github.com/MinggHsuan/StudentManagementMVVM/blob/master/StudentManagementMVVM/images/%E5%AD%B8%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%B5%B1%20%E7%A7%91%E6%8A%80%E9%A2%A8.jpg)
+
+## 畫面(Before)
+<img width="600"  alt="image" src="https://github.com/user-attachments/assets/4ae75bf6-3cd4-47c2-91bf-c111f55308bc" />
+
+## 科技風畫面(After)
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/4d3ed66f-da20-4188-b3e9-26454108ae30" />
 
